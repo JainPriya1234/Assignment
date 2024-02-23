@@ -36,7 +36,11 @@ const getPriceByDate = async (currencyId,date = currentDate(),currencyType='usd'
         throw new Error(err)
     }
 }
-
+/**
+ * @description Get the list of all companies which hold that currencyId
+ * @param {String} currencyId 
+ * @returns Promise <any>
+ */
 const treasury = async(currencyId) =>{
     try{
         const data = await fetch(`https://api.coingecko.com/api/v3/companies/public_treasury/${currencyId}`).then((res)=>{

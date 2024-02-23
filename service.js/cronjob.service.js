@@ -2,9 +2,14 @@ const cron = require('node-cron');
 const coingeckoService = require('./coingecko.service');
 const Currency = require('../models/cryptocurrencies ');
 
+
+/**
+ * @description Cron-Job Task to update the database by new currency 
+ */
 async function updateCryptocurrencyDataJob() {
     try {
         const cryptocurrencyData = await coingeckoService.getCurrency()
+        console.log('Database Updated by Cron-Job');
         const bulkOps = cryptocurrencyData.map(({ id, name }) => ({
             updateOne: {
                 filter: { id },
