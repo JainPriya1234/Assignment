@@ -10,9 +10,9 @@ async function updateCryptocurrencyDataJob() {
     try {
         const cryptocurrencyData = await coingeckoService.getCurrency()
         console.log('Database Updated by Cron-Job');
-        const bulkOps = cryptocurrencyData.map(({ id, name }) => ({
+        const bulkOps = cryptocurrencyData.map(({_id, name }) => ({
             updateOne: {
-                filter: { id },
+                filter: { _id },
                 update: { $set: { name } },
                 upsert: true
             }
